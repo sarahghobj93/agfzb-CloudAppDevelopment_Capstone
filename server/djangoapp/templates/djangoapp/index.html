@@ -14,13 +14,22 @@
 </head>
 
     <body>
-        
-    <!-- Remove this line the first time you edit this file -->
-     This is the index page of your Django app!
     <!--Add a nav bar here -->
     <nav>
-        <a href='/djangoapp'>Home</a>
+        {% if user.is_authenticated %}
+        <span> {{user.username}}</span>
+        <a href="{% url 'djangoapp:logout' %}">Logout</a>
+        {% else %}
+        <form >
+            <input type='text' name='username' placeholder="username"/>
+            <input type='password' name='password' placeholder="password"/>
+            <button>Login</button>
+        </form>
+        <a href="{% url 'djangoapp:registration' %}">Signup</a>
+        
+        {% endif %}
     </nav>
+    
     <!--Add a dealer table here -->
 
     </body>
